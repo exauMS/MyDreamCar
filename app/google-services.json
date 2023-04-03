@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "819538452975",
+    "firebase_url": "https://mydreamcar-7302e-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "mydreamcar-7302e",
+    "storage_bucket": "mydreamcar-7302e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:819538452975:android:5b2d5aa51471291178961a",
+        "android_client_info": {
+          "package_name": "com.helb.mydreamcar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "819538452975-ji21nr57pv7a1p3ao3ane7ocei6hnfju.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6IEATer_IDRUbEVkgyvoMp7xcDJPwdq8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "819538452975-ji21nr57pv7a1p3ao3ane7ocei6hnfju.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
