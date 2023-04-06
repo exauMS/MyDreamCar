@@ -86,7 +86,7 @@
             android:id="@+id/linearLayoutH2Home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#90EE90"
+            android:background="#477E47"
             android:orientation="horizontal">
 
             <TextView

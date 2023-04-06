@@ -45,7 +45,6 @@ public class HomeFragment extends Fragment {
 
     private FloatingActionButton floatingActionButton;
     private static StorageReference storageReference;
-    private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
     private ValueEventListener valueEventListener;
     private List<Post> postList;

@@ -80,6 +80,7 @@ public class Register extends AppCompatActivity {
                                             if(task.isSuccessful()){
 
                                                 Toast.makeText(getApplicationContext(),"User successfully registered!", Toast.LENGTH_SHORT).show();
+                                                startActivity(new Intent(Register.this,Login.class));
                                             }
                                             else{
 
