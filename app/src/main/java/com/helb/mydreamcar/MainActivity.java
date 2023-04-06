@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bottomNav = findViewById(R.id.bottom_nav_bar);
+        //bottomNav.setSelectedItemId(R.id.home);
 
 
 
@@ -55,5 +56,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    protected void onResume() {
+        bottomNav.setSelectedItemId(R.id.home);
+        super.onResume();
     }
 }

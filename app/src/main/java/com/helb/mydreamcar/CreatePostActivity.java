@@ -16,8 +16,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -160,14 +162,13 @@ public class CreatePostActivity extends AppCompatActivity {
         carImageRef.putFile(selectedImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Snackbar.make(findViewById(android.R.id.content), "Image Uploaded!", Snackbar.LENGTH_SHORT).show();
                 post.setUrl("images/"+randomKey);
                 uploadPost();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(), "Failed To Upload.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Failed To Create.", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -176,6 +177,7 @@ public class CreatePostActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
         String currentDateAndTime = sdf.format(new Date());
 
+        System.out.println(post.getUrl()+"-hi");
         post.setMake(make.getText().toString());
         post.setModel(model.getText().toString());
         post.setYear(year.getText().toString());
@@ -186,6 +188,7 @@ public class CreatePostActivity extends AppCompatActivity {
         databaseReference = database.getReference("Posts");
         databaseReference.child("post "+post.getCreator()+ " "+post.getDate()).setValue(post);
 
+        Snackbar.make(findViewById(android.R.id.content), "Post Created!", Snackbar.LENGTH_LONG).show();
         startActivity(new Intent(CreatePostActivity.this, MainActivity.class));
         finish();
 
