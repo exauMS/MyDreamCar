@@ -61,6 +61,12 @@ public class CreatePostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_post);
 
+        if(FirebaseAuth.getInstance().getCurrentUser()==null){
+            startActivity(new Intent(CreatePostActivity.this,Login.class));
+            finish();
+            return;
+        }
+
         post = new Post();
         userName = "username";
         addImageBtn = findViewById(R.id.addImageBtn);
