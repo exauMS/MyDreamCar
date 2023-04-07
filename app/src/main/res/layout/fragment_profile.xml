@@ -62,7 +62,7 @@
         app:layout_constraintVertical_bias="0.77">
 
         <LinearLayout
-            android:id="@+id/scenarioLinearLayout"
+            android:id="@+id/scenarioLinearLayoutProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
@@ -71,7 +71,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/myScenarioImage"
+                android:id="@+id/myScenarioImageProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

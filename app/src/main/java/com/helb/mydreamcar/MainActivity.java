@@ -16,13 +16,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.helb.mydreamcar.scenario.ScenarioActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    BottomNavigationView bottomNav;
-    HomeFragment homeFragment = new HomeFragment();
-    RecommendationFragment recommendationFragment = new RecommendationFragment();
-    ProfileFragment profileFragment = new ProfileFragment();
+    private BottomNavigationView bottomNav;
+    private HomeFragment homeFragment = new HomeFragment();
+    private RecommendationFragment recommendationFragment = new RecommendationFragment();
+    private ProfileFragment profileFragment = new ProfileFragment();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.container,homeFragment).commit();
                         return true;
                     case R.id.recommendations:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container,recommendationFragment).commit();
+                        //getSupportFragmentManager().beginTransaction().replace(R.id.container,recommendationFragment).commit();
+                        startActivity(new Intent(MainActivity.this, ScenarioActivity.class));
                         return true;
                     case R.id.profile:
                         if(FirebaseAuth.getInstance().getCurrentUser() != null)
