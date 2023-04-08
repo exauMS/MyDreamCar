@@ -25,6 +25,7 @@ public class Question3Fragment extends Fragment {
         numberPicker = view.findViewById(R.id.numberPickerQ3);
         numberPicker.setMaxValue(7);
         numberPicker.setMinValue(1);
+        numberPicker.setValue(1);
 
         return view;
     }

@@ -30,8 +30,10 @@ import okhttp3.Response;
 
 public class RecommendationFragment extends Fragment {
 
-    private List<Car> carList;
+    private List<Car> carList, accurateList, abstractList;
     private RecyclerView recyclerView;
+    private static String accurateResultFromScenario="", abstractResultFromScenario="";
+    private static boolean scenarioFilled=false;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,48 +42,41 @@ public class RecommendationFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recyclerView);
 
-        OkHttpClient client = new OkHttpClient();
+        ObjectMapper mapper = new ObjectMapper();
+        accurateList = new ArrayList<>();
+        try {
+            accurateList = Arrays.asList(mapper.readValue(accurateResultFromScenario, Car[].class));
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
 
-        Request request = new Request.Builder()
-                .url("https://car-data.p.rapidapi.com/cars?limit=10&page=0")
-                .get()
-                .addHeader("X-RapidAPI-Key", "355bb8c4c6mshd8c21018d5bb357p14dfa5jsnc0480b6d615f")
-                .addHeader("X-RapidAPI-Host", "car-data.p.rapidapi.com")
-                .build();
+        abstractList = new ArrayList<>();
+        try {
+            abstractList = Arrays.asList(mapper.readValue(abstractResultFromScenario, Car[].class));
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
 
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                e.printStackTrace();
-            }
+        carList = new ArrayList<>();
+        carList.addAll(accurateList);
+        carList.addAll(abstractList);
 
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                if(response.isSuccessful()){
-                    String myResponse = response.body().string();
-
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            System.out.println(myResponse);
-                            ObjectMapper mapper = new ObjectMapper();
-                            carList = new ArrayList<>();
-                            try {
-                                carList = Arrays.asList(mapper.readValue(myResponse, Car[].class));
-                            }
-                            catch (IOException e){
-                                e.printStackTrace();
-                            }
-
-                            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false));
-                            recyclerView.setAdapter(new RecommendationAdapter(getActivity(), carList));
-                        }
-                    });
-                }
-            }
-        });
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false));
+        recyclerView.setAdapter(new RecommendationAdapter(getActivity(), carList));
 
         return view;
+    }
+
+    public static void setResultFromScenario(String accurateR, String abstractR){
+        accurateResultFromScenario=accurateR;
+        abstractResultFromScenario=abstractR;
+        scenarioFilled=true;
+    }
+
+    public static boolean isScenarioFilled(){
+        return scenarioFilled;
     }
 
     public static void getCarImageFromAPI(String _make,String _model, ImageView view){
@@ -89,4 +84,6 @@ public class RecommendationFragment extends Fragment {
 
         Picasso.get().load(url).into(view);
     }
+
+
 }

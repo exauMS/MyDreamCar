@@ -42,8 +42,12 @@ public class MainActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.container,homeFragment).commit();
                         return true;
                     case R.id.recommendations:
-                        //getSupportFragmentManager().beginTransaction().replace(R.id.container,recommendationFragment).commit();
-                        startActivity(new Intent(MainActivity.this, ScenarioActivity.class));
+
+                        if(RecommendationFragment.isScenarioFilled()==false)
+                            startActivity(new Intent(MainActivity.this, ScenarioActivity.class));
+                        else
+                            getSupportFragmentManager().beginTransaction().replace(R.id.container,recommendationFragment).commit();
+
                         return true;
                     case R.id.profile:
                         if(FirebaseAuth.getInstance().getCurrentUser() != null)

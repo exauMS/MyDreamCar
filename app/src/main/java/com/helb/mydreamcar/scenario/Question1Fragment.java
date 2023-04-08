@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
+import com.helb.mydreamcar.Apis.CarDataAPI;
 import com.helb.mydreamcar.R;
 
 
@@ -32,6 +33,7 @@ public class Question1Fragment extends Fragment {
 
     private List<String> makeList;
     private MaterialAutoCompleteTextView autoCompleteTextView;
+    private String myResponse="", url="https://car-data.p.rapidapi.com/cars/makes";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,44 +43,27 @@ public class Question1Fragment extends Fragment {
 
         autoCompleteTextView = view.findViewById(R.id.makeSearchAutoCompleteTextView);
 
-        OkHttpClient client = new OkHttpClient();
+        CarDataAPI.setRequest(url);
+        //waiting for the api to set the result and then get it
+        try {
+            Thread.sleep(2000);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        myResponse=CarDataAPI.getRequestResult();
 
-        Request request = new Request.Builder()
-                .url("https://car-data.p.rapidapi.com/cars/makes")
-                .get()
-                .addHeader("X-RapidAPI-Key", "355bb8c4c6mshd8c21018d5bb357p14dfa5jsnc0480b6d615f")
-                .addHeader("X-RapidAPI-Host", "car-data.p.rapidapi.com")
-                .build();
+        System.out.println(myResponse);
 
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                e.printStackTrace();
-            }
+        ObjectMapper mapper = new ObjectMapper();
+        makeList = new ArrayList<>();
+        try {
+            makeList = Arrays.asList(mapper.readValue(myResponse, String[].class));
+        }catch (IOException e){
+            e.printStackTrace();
+        }
 
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                if(response.isSuccessful()){
-                    String myResponse = response.body().string();
+        autoCompleteTextView.setAdapter(new ArrayAdapter<>(getActivity(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,makeList));
 
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            ObjectMapper mapper = new ObjectMapper();
-                            makeList = new ArrayList<>();
-                            try {
-                                makeList = Arrays.asList(mapper.readValue(myResponse, String[].class));
-                            }catch (IOException e){
-                                e.printStackTrace();
-                            }
-
-                            autoCompleteTextView.setAdapter(new ArrayAdapter<>(getActivity(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,makeList));
-
-                        }
-                    });
-                }
-            }
-        });
 
         return view;
     }

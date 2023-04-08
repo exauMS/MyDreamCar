@@ -17,7 +17,7 @@ public class Car {
 
     public String imageUrl;
 
-    public Car(){};
+    public Car(){}
 
     public Car(int id, int year, String make, String model, String type) {
         this.id = id;
