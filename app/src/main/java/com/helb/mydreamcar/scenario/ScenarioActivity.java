@@ -29,6 +29,7 @@ public class ScenarioActivity extends AppCompatActivity {
     private String bigStorage;
     private String numberOfPassenger;
     private String useOfCar;
+    private String favoriteType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +48,7 @@ public class ScenarioActivity extends AppCompatActivity {
                    switch (position){
                        case 1:
                            favoriteMake=q1.getFavoriteMake();
+                           System.out.println(favoriteMake);
                            break;
                        case 2:
                           bigStorage = q2.getBigStorageValue();
@@ -77,6 +79,14 @@ public class ScenarioActivity extends AppCompatActivity {
 
                 }
 
+            }
+        });
+
+        btnValidation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                favoriteType=q5.getFavoriteType();
+                System.out.println(favoriteType);
             }
         });
 

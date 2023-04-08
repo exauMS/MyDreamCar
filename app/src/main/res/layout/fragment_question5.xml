@@ -14,13 +14,88 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="29dp"
         android:text="Do you have a preference for a body type?"
-        android:textColor="#088008"
+        android:textColor="@color/green_cool"
         android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupCarType"
+        android:layout_width="269dp"
+        android:layout_height="370dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/question5Text">
+
+        <RadioButton
+            android:id="@+id/radioBtnSUV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/green_cool"
+            android:text="SUV"
+            android:textSize="20dp" />
+
+        <RadioButton
+            android:id="@+id/radioBtnConvertible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/green_cool"
+            android:text="Convertible"
+            android:textSize="20dp" />
+
+        <RadioButton
+            android:id="@+id/radioBtnPickup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/green_cool"
+            android:text="Pickup"
+            android:textSize="20dp" />
+
+        <RadioButton
+            android:id="@+id/radioBtnVan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/green_cool"
+            android:text="Van/Minivan"
+            android:textSize="20dp" />
+        <RadioButton
+            android:id="@+id/radioBtnWagon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/green_cool"
+            android:text="Wagon"
+            android:textSize="20dp" />
+        <RadioButton
+            android:id="@+id/radioBtnSedan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/green_cool"
+            android:text="Sedan"
+            android:textSize="20dp" />
+        <RadioButton
+            android:id="@+id/radioBtnCoupe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/green_cool"
+            android:text="Coupe"
+            android:textSize="20dp" />
+        <RadioButton
+            android:id="@+id/radioBtnHatchback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/green_cool"
+            android:text="Hatchback"
+            android:textSize="20dp" />
+
+    </RadioGroup>
 
 
 
