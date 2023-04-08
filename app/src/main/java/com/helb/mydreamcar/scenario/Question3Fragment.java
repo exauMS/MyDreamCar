@@ -16,7 +16,6 @@ public class Question3Fragment extends Fragment {
 
 
     private NumberPicker numberPicker;
-    private String numberOfPassenger;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

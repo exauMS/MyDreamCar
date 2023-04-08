@@ -21,7 +21,7 @@ import okhttp3.Response;
 public class CarDataAPI {
     private static String myResponse="No Result";
 
-    public static synchronized void setRequest(String url){
+    public static void setRequest(String url){
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()

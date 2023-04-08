@@ -87,8 +87,6 @@ public class HomeFragment extends Fragment {
                             postList.add(post);
                         }
 
-                        System.out.println(postList.size());
-                        System.out.println("HELLOOOO");
                         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false));
                         recyclerView.setAdapter(new HomeAdapter(getActivity(), postList));
                     }
@@ -99,18 +97,10 @@ public class HomeFragment extends Fragment {
                     }
                 };
 
-
                 databaseReference.addListenerForSingleValueEvent(valueEventListener);
-
-
 
             }
         });
-
-
-
-
-
 
         return view;
     }

@@ -39,7 +39,7 @@
             android:id="@+id/linearLayoutH1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#008000"
+            android:background="@color/green_cool"
             android:orientation="horizontal">
 
             <TextView
