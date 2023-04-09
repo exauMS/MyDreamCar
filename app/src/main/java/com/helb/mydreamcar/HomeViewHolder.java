@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class HomeViewHolder extends RecyclerView.ViewHolder{
     ImageView carImage;
-    TextView carMake, carModel, carYear, carType, userName, date;
+    TextView carMake, carModel, carYear, carType, userName, date, location;
 
     public HomeViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -20,6 +20,7 @@ public class HomeViewHolder extends RecyclerView.ViewHolder{
         carType = itemView.findViewById(R.id.carTypeHome);
         userName = itemView.findViewById(R.id.usernameHome);
         date = itemView.findViewById(R.id.dateHome);
+        location = itemView.findViewById(R.id.locationHome);
 
     }
 }

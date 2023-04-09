@@ -20,7 +20,7 @@ public class PostDetailsActivity extends AppCompatActivity implements Serializab
 
     private ImageButton btnAddFavorite;
     private ImageView carImage;
-    private TextView userNameAndDate, make, model, year, type;
+    private TextView userNameAndDate, make, model, year, type, location;
 
     private int colorCount=1;
     @Override
@@ -39,12 +39,14 @@ public class PostDetailsActivity extends AppCompatActivity implements Serializab
         model = findViewById(R.id.modelValuePostDetails);
         year = findViewById(R.id.yearValuePostDetails);
         type = findViewById(R.id.typeValuePostDetails);
+        location = findViewById(R.id.locationPostDetails);
 
         userNameAndDate.setText("Posted by "+postInfoMap.get("creator")+" on "+postInfoMap.get("date"));
         make.setText(postInfoMap.get("make"));
         model.setText(postInfoMap.get("model"));
         year.setText(postInfoMap.get("year"));
         type.setText(postInfoMap.get("type"));
+        location.setText(postInfoMap.get("location"));
         HomeFragment.getCarImageFromStorage(postInfoMap.get("url"), carImage);
 
         btnAddFavorite.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +62,7 @@ public class PostDetailsActivity extends AppCompatActivity implements Serializab
             }
         });
 
-        System.out.println(postInfoMap.get("make"));
+
 
     }
 }

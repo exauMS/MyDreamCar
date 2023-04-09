@@ -28,14 +28,34 @@
                 android:src="@drawable/logo_my_dream_car" />
         </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/imageBtnAddFavorite"
-            android:background="@color/white"
-            android:layout_width="70dp"
-            android:layout_marginLeft="340dp"
-            android:contentDescription="addFavorite"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/favorite" />
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageBtnOpenMap"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:contentDescription="openMap"
+                app:srcCompat="@drawable/map" />
+
+            <ImageButton
+                android:id="@+id/imageBtnAddFavorite"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="270dp"
+                android:background="@color/white"
+                android:contentDescription="addFavorite"
+                app:srcCompat="@drawable/favorite" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="?attr/actionBarDivider" />
 
         <ImageView
             android:id="@+id/imageCarPostDetails"
@@ -44,14 +64,38 @@
             android:layout_height="340dp"
             tools:srcCompat="@tools:sample/avatars" />
 
-        <TextView
-            android:id="@+id/userAndDatePostDetails"
+        <ImageView
+            android:id="@+id/imageView13"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:text="Posted by Username on Date" />
+            app:srcCompat="?attr/actionBarDivider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/userAndDatePostDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Posted by Username on Date"
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                android:layout_weight="1"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/locationPostDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="17dp"
+                android:text="Location" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

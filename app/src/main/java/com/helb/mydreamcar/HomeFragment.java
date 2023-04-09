@@ -51,12 +51,14 @@ public class HomeFragment extends Fragment {
     private Post post;
     private RecyclerView recyclerView;
     private static View view;
+    private ImageView imageNoContentYet;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView = view.findViewById(R.id.recyclerViewHome);
+        imageNoContentYet = view.findViewById(R.id.imageNoContentYet);
         floatingActionButton = view.findViewById(R.id.add_button);
         postList = new ArrayList<>();
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -82,13 +84,20 @@ public class HomeFragment extends Fragment {
                                     ds.child("type").getValue(String.class),
                                     ds.child("creator").getValue(String.class),
                                     ds.child("date").getValue(String.class),
-                                    ds.child("url").getValue(String.class));
+                                    ds.child("url").getValue(String.class),
+                                    ds.child("location").getValue(String.class));
 
                             postList.add(post);
                         }
 
-                        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false));
-                        recyclerView.setAdapter(new HomeAdapter(getActivity(), postList));
+                        if(postList.isEmpty()){
+                            imageNoContentYet.setVisibility(View.VISIBLE);
+                            recyclerView.setVisibility(View.INVISIBLE);
+                        }else{
+                            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false));
+                            recyclerView.setAdapter(new HomeAdapter(getActivity(), postList));
+                        }
+
                     }
 
                     @Override

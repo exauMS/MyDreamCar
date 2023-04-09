@@ -43,6 +43,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> implements
         holder.carType.setText(posts.get(position).getType());
         holder.userName.setText(posts.get(position).getCreator());
         holder.date.setText(posts.get(position).getDate());
+        holder.location.setText(posts.get(position).getLocation());
         HomeFragment.getCarImageFromStorage(posts.get(position).getUrl(), holder.carImage);
         holder.carImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +56,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> implements
               postInfoMap.put("model",posts.get(pos).getModel());
               postInfoMap.put("year",posts.get(pos).getYear());
               postInfoMap.put("type",posts.get(pos).getType());
+              postInfoMap.put("location",posts.get(pos).getLocation());
 
               Bundle bundle = new Bundle();
               bundle.putSerializable("postInfo", (Serializable) postInfoMap);

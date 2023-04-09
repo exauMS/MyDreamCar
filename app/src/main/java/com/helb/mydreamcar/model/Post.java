@@ -8,9 +8,10 @@ public class Post {
     private String creator;
     private String date;
     private String url;
+    private String location;
 
     public Post(){}
-    public Post(String make, String model, String year, String type, String creator, String date, String url) {
+    public Post(String make, String model, String year, String type, String creator, String date, String url, String location) {
         this.make = make;
         this.model = model;
         this.year = year;
@@ -18,6 +19,7 @@ public class Post {
         this.creator = creator;
         this.date = date;
         this.url = url;
+        this.location = location;
     }
 
     public String getMake() {
@@ -74,5 +76,13 @@ public class Post {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

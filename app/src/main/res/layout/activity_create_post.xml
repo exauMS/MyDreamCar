@@ -44,15 +44,6 @@
         app:layout_constraintTop_toTopOf="@+id/imageView5"
         app:layout_constraintVertical_bias="0.629">
 
-        <TextView
-            android:id="@+id/makeCreateText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Make"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/makeLayout"
             style=""
@@ -60,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
-            android:hint="Toyota">
+            android:hint="Make (Toyota)">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/makeCreateEditText"
@@ -74,15 +65,6 @@
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/modelCreateText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Model"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/modelLayout"
             style=""
@@ -90,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
-            android:hint="Yaris">
+            android:hint="Model (Yaris)">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/modelCreateEditText"
@@ -104,15 +86,6 @@
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/yearCreateText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Year"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/yearLayout"
             style=""
@@ -120,7 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
-            android:hint="2020">
+            android:hint="Year (2020)">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/yearCreateEditText"
@@ -134,15 +107,6 @@
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/typeCreateText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Type"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/typeLayout"
             style=""
@@ -150,10 +114,30 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
-            android:hint="Hatchback">
+            android:hint="Type (Hatchback)">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/typeCreateEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#E6FFE3"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:minHeight="48dp"
+                android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/locationLayout"
+            style=""
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:hint="Location (Brussels)">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/locationCreateEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#E6FFE3"
@@ -169,42 +153,45 @@
         android:id="@+id/addImageBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="37dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="31dp"
         android:backgroundTint="#55CEFF"
-        android:layout_marginBottom="40dp"
         android:text="Add Image"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/createPostBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/previewImage"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
     <ImageView
         android:id="@+id/previewImage"
-        android:layout_width="162dp"
-        android:layout_height="102dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="1dp"
+        android:layout_width="251dp"
+        android:layout_height="141dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="13dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/createPostBtn"
-        app:layout_constraintStart_toEndOf="@+id/addImageBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@android:drawable/ic_menu_gallery" />
 
     <Button
         android:id="@+id/createPostBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="37dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="20dp"
         android:backgroundTint="#088008"
         android:text="Create"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/previewImage"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.509" />
+        app:layout_constraintTop_toBottomOf="@+id/addImageBtn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

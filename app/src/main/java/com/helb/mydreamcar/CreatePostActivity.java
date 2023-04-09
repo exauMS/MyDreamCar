@@ -47,7 +47,7 @@ public class CreatePostActivity extends AppCompatActivity {
     private ImageView previewImage;
     private int SELECT_PICTURE=200;
     private Uri selectedImageUri;
-    private TextInputEditText make,model,year,type;
+    private TextInputEditText make,model,year,type,location;
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
@@ -76,6 +76,7 @@ public class CreatePostActivity extends AppCompatActivity {
         model = findViewById(R.id.modelCreateEditText);
         year = findViewById(R.id.yearCreateEditText);
         type = findViewById(R.id.typeCreateEditText);
+        location = findViewById(R.id.locationCreateEditText);
 
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
@@ -180,16 +181,16 @@ public class CreatePostActivity extends AppCompatActivity {
     }
 
     private void uploadPost(){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault());
         String currentDateAndTime = sdf.format(new Date());
 
-        System.out.println(post.getUrl()+"-hi");
         post.setMake(make.getText().toString());
         post.setModel(model.getText().toString());
         post.setYear(year.getText().toString());
         post.setType(type.getText().toString());
         post.setCreator(userName);
         post.setDate(currentDateAndTime);
+        post.setLocation(location.getText().toString());
 
         databaseReference = database.getReference("Posts");
         databaseReference.child("post "+post.getCreator()+ " "+post.getDate()).setValue(post);
