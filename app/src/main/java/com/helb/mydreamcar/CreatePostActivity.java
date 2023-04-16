@@ -191,6 +191,7 @@ public class CreatePostActivity extends AppCompatActivity {
         post.setCreator(userName);
         post.setDate(currentDateAndTime);
         post.setLocation(location.getText().toString());
+        post.setCreatorEmail(mAuth.getCurrentUser().getEmail());
 
         databaseReference = database.getReference("Posts");
         databaseReference.child("post "+post.getCreator()+ " "+post.getDate()).setValue(post);

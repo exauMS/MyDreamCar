@@ -59,9 +59,9 @@
 
         <ImageView
             android:id="@+id/imageCarPostDetails"
-            android:layout_marginTop="12dp"
             android:layout_width="match_parent"
-            android:layout_height="340dp"
+            android:layout_height="306dp"
+            android:layout_marginTop="12dp"
             tools:srcCompat="@tools:sample/avatars" />
 
         <ImageView
@@ -215,6 +215,15 @@
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
+
+        <Button
+            android:id="@+id/deletePostBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#F44336"
+            android:visibility="invisible"
+            android:layout_marginTop="110dp"
+            android:text="Delete" />
 
     </LinearLayout>
 

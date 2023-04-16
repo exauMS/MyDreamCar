@@ -43,11 +43,14 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.recommendations:
 
-                        if(RecommendationFragment.isScenarioFilled()==false)
-                            startActivity(new Intent(MainActivity.this, ScenarioActivity.class));
-                        else
-                            getSupportFragmentManager().beginTransaction().replace(R.id.container,recommendationFragment).commit();
-
+                        if(FirebaseAuth.getInstance().getCurrentUser() != null) {
+                            if (RecommendationFragment.isScenarioFilled() == false)
+                                startActivity(new Intent(MainActivity.this, ScenarioActivity.class));
+                            else
+                                getSupportFragmentManager().beginTransaction().replace(R.id.container, recommendationFragment).commit();
+                        }else{
+                            startActivity(new Intent(MainActivity.this, Login.class));
+                        }
                         return true;
                     case R.id.profile:
                         if(FirebaseAuth.getInstance().getCurrentUser() != null)

@@ -85,7 +85,8 @@ public class HomeFragment extends Fragment {
                                     ds.child("creator").getValue(String.class),
                                     ds.child("date").getValue(String.class),
                                     ds.child("url").getValue(String.class),
-                                    ds.child("location").getValue(String.class));
+                                    ds.child("location").getValue(String.class),
+                                    ds.child("creatorEmail").getValue(String.class));
 
                             postList.add(post);
                         }

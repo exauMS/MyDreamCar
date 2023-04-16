@@ -57,6 +57,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> implements
               postInfoMap.put("year",posts.get(pos).getYear());
               postInfoMap.put("type",posts.get(pos).getType());
               postInfoMap.put("location",posts.get(pos).getLocation());
+              postInfoMap.put("creatorEmail",posts.get(pos).getCreatorEmail());
 
               Bundle bundle = new Bundle();
               bundle.putSerializable("postInfo", (Serializable) postInfoMap);
