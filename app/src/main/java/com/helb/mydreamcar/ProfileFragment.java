@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +31,7 @@ public class ProfileFragment extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
     private DatabaseReference databaseReference;
+    private LinearLayout myPostsLinearLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,6 +43,7 @@ public class ProfileFragment extends Fragment {
         username = view.findViewById(R.id.userNameProfileText);
         email = view.findViewById(R.id.emailProfileText);
         mAuth = FirebaseAuth.getInstance();
+        myPostsLinearLayout = view.findViewById(R.id.myPostsLinearLayout);
 
         currentUser = mAuth.getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
@@ -76,6 +79,12 @@ public class ProfileFragment extends Fragment {
 
         });
 
+        myPostsLinearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),MyPostsActivity.class));
+            }
+        });
 
         return view;
     }

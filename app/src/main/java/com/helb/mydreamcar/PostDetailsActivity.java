@@ -74,8 +74,9 @@ public class PostDetailsActivity extends AppCompatActivity implements Serializab
         btnAddFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnAddFavorite.setBackgroundColor(getResources().getColor(R.color.yellow));
                 if(colorCount==1){
-                    btnAddFavorite.setBackgroundColor(getResources().getColor(R.color.yellow));
+
                     colorCount=0;
                 }else{
                     btnAddFavorite.setBackgroundColor(getResources().getColor(R.color.white));

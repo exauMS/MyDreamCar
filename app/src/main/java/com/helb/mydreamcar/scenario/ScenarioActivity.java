@@ -155,12 +155,7 @@ public class ScenarioActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                abstractResult=CarDataAPI.getRequestResult();
-            }
-        });
+        abstractResult=CarDataAPI.getRequestResult();
 
         System.out.println(abstractResult);
         RecommendationFragment.setResultFromScenario(accurateResult, abstractResult);

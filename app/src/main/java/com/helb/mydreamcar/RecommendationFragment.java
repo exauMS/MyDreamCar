@@ -53,6 +53,7 @@ public class RecommendationFragment extends Fragment {
 
         abstractList = new ArrayList<>();
         try {
+            System.out.println(abstractResultFromScenario);
             abstractList = Arrays.asList(mapper.readValue(abstractResultFromScenario, Car[].class));
         }
         catch (IOException e){

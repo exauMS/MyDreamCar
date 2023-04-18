@@ -89,7 +89,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/favoriteLinearLayout"
+            android:id="@+id/myPostsLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -99,17 +99,17 @@
 
             <ImageView
                 android:id="@+id/myFavoriteImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="5dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@drawable/favorite" />
+                android:src="@drawable/car_posts" />
 
             <TextView
-                android:id="@+id/myFavoriteText"
+                android:id="@+id/myPostsText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="My Favorites"
+                android:text="My Posts"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
