@@ -55,6 +55,7 @@ public class CreatePostActivity extends AppCompatActivity {
     private StorageReference storageReference;
     private String userName;
     private  Post post;
+    private boolean a =false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +98,7 @@ public class CreatePostActivity extends AppCompatActivity {
                         Object data = dataMap.get(key);
                         HashMap<String, Object> userData = (HashMap<String, Object>) data;
                         userName=(userData.get("userName").toString());
+                        a=true;
                     }
 
 
@@ -109,6 +111,7 @@ public class CreatePostActivity extends AppCompatActivity {
 
             }
         });
+
 
         addImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override

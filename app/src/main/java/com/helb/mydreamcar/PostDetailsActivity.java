@@ -74,13 +74,17 @@ public class PostDetailsActivity extends AppCompatActivity implements Serializab
         btnAddFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btnAddFavorite.setBackgroundColor(getResources().getColor(R.color.yellow));
-                if(colorCount==1){
+                if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+                    btnAddFavorite.setBackgroundColor(getResources().getColor(R.color.yellow));
+                    if (colorCount == 1) {
 
-                    colorCount=0;
+                        colorCount = 0;
+                    } else {
+                        btnAddFavorite.setBackgroundColor(getResources().getColor(R.color.white));
+                        colorCount += 1;
+                    }
                 }else{
-                    btnAddFavorite.setBackgroundColor(getResources().getColor(R.color.white));
-                    colorCount+=1;
+                    startActivity(new Intent(getApplicationContext(), Login.class));
                 }
             }
         });

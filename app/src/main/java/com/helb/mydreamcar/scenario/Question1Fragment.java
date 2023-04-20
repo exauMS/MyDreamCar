@@ -52,7 +52,6 @@ public class Question1Fragment extends Fragment {
         }
         myResponse=CarDataAPI.getRequestResult();
 
-        System.out.println(myResponse);
 
         ObjectMapper mapper = new ObjectMapper();
         makeList = new ArrayList<>();

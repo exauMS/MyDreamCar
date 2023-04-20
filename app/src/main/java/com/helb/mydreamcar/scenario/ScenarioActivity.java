@@ -12,10 +12,14 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.helb.mydreamcar.Apis.CarDataAPI;
 import com.helb.mydreamcar.MainActivity;
 import com.helb.mydreamcar.R;
 import com.helb.mydreamcar.RecommendationFragment;
+import com.helb.mydreamcar.model.Scenario;
 
 import java.util.List;
 
@@ -98,6 +102,12 @@ public class ScenarioActivity extends AppCompatActivity {
             public void onClick(View v) {
                 favoriteType=q5.getFavoriteType();
                 urlPreparation();
+                try {
+                    Thread.sleep(2000);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                saveScenario();
             }
         });
 
@@ -145,7 +155,7 @@ public class ScenarioActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         accurateResult=CarDataAPI.getRequestResult();
-        System.out.println(accurateResult);
+
 
         CarDataAPI.setRequest(abstractUrl);
         //waiting for the api to set the result and then get it
@@ -157,11 +167,14 @@ public class ScenarioActivity extends AppCompatActivity {
 
         abstractResult=CarDataAPI.getRequestResult();
 
-        System.out.println(abstractResult);
-        RecommendationFragment.setResultFromScenario(accurateResult, abstractResult);
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
         finish();
 
+    }
+
+    private void saveScenario(){
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Scenarios").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        ref.setValue(new Scenario(favoriteMake,bigStorage,numberOfPassenger,useOfCar,favoriteType, FirebaseAuth.getInstance().getCurrentUser().getEmail(),abstractResult, accurateResult));
     }
 
     @Override
