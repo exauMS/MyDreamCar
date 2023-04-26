@@ -10,6 +10,16 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url 'https://api.mapbox.com/downloads/v2/releases/maven'
+            authentication{
+                basic(BasicAuthentication)
+            }
+            credentials{
+                username = "mapbox"
+                password = "sk.eyJ1IjoiZ3JpbWVzazIwMDAiLCJhIjoiY2xnd2luZzBwMGM5NzNkcXByNDM1c2g4biJ9.jXxWGHsaP_g9w_21z7tufA" ?: ""
+            }
+        }
     }
 }
 rootProject.name = "MyDreamCar"

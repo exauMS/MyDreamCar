@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -146,7 +147,7 @@ public class ScenarioActivity extends AppCompatActivity {
             abstractUrl= "https://car-data.p.rapidapi.com/cars?limit=5&page=0&year=20&type=hatchback";
         }
 
-        Toast.makeText(getApplicationContext(), "Waiting for your recommendations...", Toast.LENGTH_LONG).show();
+        Snackbar.make(findViewById(android.R.id.content), "Waiting for your recommendations...", Snackbar.LENGTH_LONG).show();
         CarDataAPI.setRequest(accurateUrl);
         //waiting for the api to set the result and then get it
         try {

@@ -4,11 +4,16 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import android.app.Activity;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -55,7 +60,6 @@ public class CreatePostActivity extends AppCompatActivity {
     private StorageReference storageReference;
     private String userName;
     private  Post post;
-    private boolean a =false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +102,7 @@ public class CreatePostActivity extends AppCompatActivity {
                         Object data = dataMap.get(key);
                         HashMap<String, Object> userData = (HashMap<String, Object>) data;
                         userName=(userData.get("userName").toString());
-                        a=true;
+
                     }
 
 
@@ -200,6 +204,8 @@ public class CreatePostActivity extends AppCompatActivity {
         databaseReference.child("post "+post.getCreator()+ " "+post.getDate()).setValue(post);
 
         Snackbar.make(findViewById(android.R.id.content), "Post Created!", Snackbar.LENGTH_LONG).show();
+        makeNotification();
+
         startActivity(new Intent(CreatePostActivity.this, MainActivity.class));
         finish();
 
@@ -211,5 +217,70 @@ public class CreatePostActivity extends AppCompatActivity {
         startActivity(new Intent(CreatePostActivity.this, MainActivity.class));
         finish();
         super.onBackPressed();
+    }
+
+    public void makeNotification(){
+        databaseReference = database.getReference("Scenarios");
+        databaseReference.orderByChild("creatorEmail").equalTo(FirebaseAuth.getInstance().getCurrentUser().getEmail()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                String favoriteMake="", favoriteType="";
+                final String CHANNEL_ID = "personal notifications";
+                final int NOTIFICATION_ID = 001;
+                if (dataSnapshot.exists()){
+                    HashMap<String, Object> dataMap = (HashMap<String, Object>) dataSnapshot.getValue();
+
+                    for (String key : dataMap.keySet()) {
+
+                        Object data = dataMap.get(key);
+                        HashMap<String, Object> scenarioData = (HashMap<String, Object>) data;
+
+                        favoriteMake=(scenarioData.get("favoriteMake").toString());
+                        favoriteType=(scenarioData.get("favoriteType").toString());
+
+                    }
+
+                    if(make.getText().toString().equals(favoriteMake) || type.getText().toString().equals(favoriteType)){
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(Build.VERSION.SDK_INT >=Build.VERSION_CODES.O){
+                                    System.out.println("plus de 0000");
+                                    CharSequence name = "personal notifications";
+                                    String description = "personal notifications description";
+                                    int importance = NotificationManager.IMPORTANCE_DEFAULT;
+
+                                    NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, name, importance);
+                                    notificationChannel.setDescription(description);
+
+                                    NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                                    notificationManager.createNotificationChannel(notificationChannel);
+                                }
+                                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
+                                        .setSmallIcon(R.drawable.splash_logo_mydreamcar)
+                                        .setContentTitle("A new car matches with your scenario!")
+                                        .setContentText("favoriteMake"+","+"favoriteType")
+                                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+                                NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getApplicationContext());
+                                notificationManagerCompat.notify(NOTIFICATION_ID, builder.build());
+                                System.out.println("NOTIFICAASAAASSSHHH");
+                            }
+                        });
+
+                    }
+
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }

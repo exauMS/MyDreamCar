@@ -35,10 +35,10 @@ public class PostDetailsActivity extends AppCompatActivity implements Serializab
     private Bundle bundle;
     private HashMap<String, String> postInfoMap;
 
-    private ImageButton btnAddFavorite, btnOpenMap;
+    private ImageButton btnOpenMap;
     private Button btnDeletePost;
     private ImageView carImage;
-    private TextView userNameAndDate, make, model, year, type, location;
+    private TextView userNameAndDate, make, model, year, type, location, creatorEmail;
 
 
 
@@ -52,7 +52,6 @@ public class PostDetailsActivity extends AppCompatActivity implements Serializab
         bundle = intent.getExtras();
         postInfoMap = (HashMap<String, String>)bundle.getSerializable("postInfo");
 
-        btnAddFavorite = findViewById(R.id.imageBtnAddFavorite);
         btnOpenMap = findViewById(R.id.imageBtnOpenMap);
         carImage = findViewById(R.id.imageCarPostDetails);
         btnDeletePost =  findViewById(R.id.deletePostBtn);
@@ -62,6 +61,7 @@ public class PostDetailsActivity extends AppCompatActivity implements Serializab
         year = findViewById(R.id.yearValuePostDetails);
         type = findViewById(R.id.typeValuePostDetails);
         location = findViewById(R.id.locationPostDetails);
+        creatorEmail = findViewById(R.id.creatorContactPostDetails);
 
         userNameAndDate.setText("Posted by "+postInfoMap.get("creator")+" on "+postInfoMap.get("date"));
         make.setText(postInfoMap.get("make"));
@@ -69,25 +69,9 @@ public class PostDetailsActivity extends AppCompatActivity implements Serializab
         year.setText(postInfoMap.get("year"));
         type.setText(postInfoMap.get("type"));
         location.setText(postInfoMap.get("location"));
+        creatorEmail.setText(postInfoMap.get("creatorEmail"));
         HomeFragment.getCarImageFromStorage(postInfoMap.get("url"), carImage);
 
-        btnAddFavorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-                    btnAddFavorite.setBackgroundColor(getResources().getColor(R.color.yellow));
-                    if (colorCount == 1) {
-
-                        colorCount = 0;
-                    } else {
-                        btnAddFavorite.setBackgroundColor(getResources().getColor(R.color.white));
-                        colorCount += 1;
-                    }
-                }else{
-                    startActivity(new Intent(getApplicationContext(), Login.class));
-                }
-            }
-        });
 
         btnOpenMap.setOnClickListener(new View.OnClickListener() {
             @Override

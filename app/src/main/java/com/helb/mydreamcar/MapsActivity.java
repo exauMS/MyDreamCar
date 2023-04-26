@@ -1,83 +1,80 @@
 package com.helb.mydreamcar;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
+import com.mapbox.geojson.Feature;
+import com.mapbox.geojson.Point;
+import com.mapbox.maps.MapInitOptions;
+import com.mapbox.maps.MapView;
+import com.mapbox.maps.MapboxMap;
+import com.mapbox.maps.Style;
+import com.mapbox.maps.plugin.Plugin;
 
 
-    protected GoogleApiClient mGoogleApiClient;
+public class MapsActivity extends AppCompatActivity{
 
-    private final int REQUEST_LOCATION_PERMISSION = 1;
 
-    private SupportMapFragment mapFragment;
+
+    private MapView mapView;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        LocationManager locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
-        Criteria criteria = new Criteria();
 
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
-        double latitude =  50.8504500;
-        double longitude = 4.3487800;
+        mapView = findViewById(R.id.mapView);
 
-        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.maps);
-
-        mapFragment.getMapAsync(new OnMapReadyCallback() {
+        /*mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
-            public void onMapReady(@NonNull GoogleMap googleMap) {
-
-                LatLng currentpos= new LatLng(latitude, longitude);
-                MarkerOptions markerOptions= new MarkerOptions();
-                markerOptions.position(currentpos);
-                googleMap.clear();
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentpos,10));
-                googleMap.addMarker(markerOptions);
-                googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            public void onMapReady(@NonNull @androidx.annotation.NonNull MapboxMap mapboxMap) {
+                mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
                     @Override
-                    public void onMapClick(@NonNull LatLng latLng) {
-                        MarkerOptions markerOptions= new MarkerOptions();
-                        markerOptions.position(latLng);
-                        markerOptions.title(latLng.latitude+" KG"+ latLng.longitude);
-                        googleMap.clear();
-                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,20));
-                        googleMap.addMarker(markerOptions);
+                    public void onStyleLoaded(@NonNull @androidx.annotation.NonNull Style style) {
+                        style.addImage("red-pin-icon-id", BitmapUtils.getBitmapFromDrawable(getResources().getDrawable(R.drawable.ic_baseline_place_24)));
+                        style.addLayer(new SymbolLayer("icon-layer-id", "icon-source-id").withProperties(
+                                iconImage("red-pin-icon-id"),
+                                iconIgnorePlacement(true),
+                                iconAllowOverlap(true),
+                                iconOffset(new Float[]{0f,-9f})
+                        ));
+                        GeoJsonSource iconGeoJsonSource = new GeoJsonSource("icon-source-id", Feature.fromGeometry(Point.fromLngLat(107.6345122,-6.9249233)));
+                        style.addSource(iconGeoJsonSource);
+                        mapboxMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(-6.9249233,107.6345122), 15.7));
                     }
                 });
             }
-        });
+        });*/
+
+        //mapView.onCreate(savedInstanceState);
+        mapView.getMapboxMap().loadStyleUri(Style.MAPBOX_STREETS);
     }
 
     @Override
-    public void onMapReady(@NonNull GoogleMap googleMap) {
+    protected void onStart() {
+        super.onStart();
+        mapView.onStart();
+    }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mapView.onStop();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mapView.onDestroy();
     }
 }
