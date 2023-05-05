@@ -13,7 +13,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/imageView9"
+            android:id="@+id/logoMyPostPage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/logo_my_dream_car" />

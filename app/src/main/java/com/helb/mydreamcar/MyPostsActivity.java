@@ -27,13 +27,22 @@ public class MyPostsActivity extends AppCompatActivity {
     private List<Post> myPostList;
     private Post post;
     private RecyclerView recyclerView;
+    private ImageView logoGoHome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_posts);
         imageNoContentYetMyPosts = findViewById(R.id.imageNoContentYetMyPosts);
         recyclerView = findViewById(R.id.recyclerViewMyPosts);
+        logoGoHome = findViewById(R.id.logoMyPostPage);
         myPostList = new ArrayList<>();
+
+        logoGoHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference("Posts");
         Query query = dbReference.orderByChild("creatorEmail").equalTo(FirebaseAuth.getInstance().getCurrentUser().getEmail());

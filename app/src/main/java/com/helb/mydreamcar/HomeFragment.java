@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -43,7 +44,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    private FloatingActionButton floatingActionButton;
+    private Button addButton;
     private static StorageReference storageReference;
     private DatabaseReference databaseReference;
     private ValueEventListener valueEventListener;
@@ -59,9 +60,9 @@ public class HomeFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView = view.findViewById(R.id.recyclerViewHome);
         imageNoContentYet = view.findViewById(R.id.imageNoContentYet);
-        floatingActionButton = view.findViewById(R.id.add_button);
+        addButton = view.findViewById(R.id.add_button);
         postList = new ArrayList<>();
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(),CreatePostActivity.class));

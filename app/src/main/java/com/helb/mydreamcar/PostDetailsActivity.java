@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -13,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.signin.internal.Storage;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,6 +32,7 @@ public class PostDetailsActivity extends AppCompatActivity implements Serializab
     private Intent intent;
     private Bundle bundle;
     private HashMap<String, String> postInfoMap;
+    private ImageView logo;
 
     private ImageButton btnOpenMap;
     private Button btnDeletePost;
@@ -62,6 +61,7 @@ public class PostDetailsActivity extends AppCompatActivity implements Serializab
         type = findViewById(R.id.typeValuePostDetails);
         location = findViewById(R.id.locationPostDetails);
         creatorEmail = findViewById(R.id.creatorContactPostDetails);
+        logo = findViewById(R.id.logoDetailsPage);
 
         userNameAndDate.setText("Posted by "+postInfoMap.get("creator")+" on "+postInfoMap.get("date"));
         make.setText(postInfoMap.get("make"));
@@ -73,6 +73,12 @@ public class PostDetailsActivity extends AppCompatActivity implements Serializab
         HomeFragment.getCarImageFromStorage(postInfoMap.get("url"), carImage);
 
 
+        logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         btnOpenMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

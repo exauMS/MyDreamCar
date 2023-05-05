@@ -3,6 +3,6 @@
 
     <item android:color ="#000000"
         android:state_selected="true"/>
-    <item android:color ="#CDCACA"
+    <item android:color ="@color/green_cool"
         android:state_selected="false"/>
 </selector>
