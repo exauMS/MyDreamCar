@@ -73,6 +73,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scenario_container" />
 
+
     <ImageButton
         android:id="@+id/btnNextQuestion"
         android:layout_width="49dp"

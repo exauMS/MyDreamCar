@@ -76,8 +76,10 @@ public class PostDetailsActivity extends AppCompatActivity implements Serializab
         btnOpenMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("cityName", (Serializable) postInfoMap.get("location"));
+                startActivity(new Intent(getApplicationContext(),MapsPageActivity.class).putExtras(bundle));
 
-                startActivity(new Intent(getApplicationContext(), MapsActivity.class));
             }
         });
 

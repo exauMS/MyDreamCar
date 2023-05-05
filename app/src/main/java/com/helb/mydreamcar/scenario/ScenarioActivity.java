@@ -33,7 +33,7 @@ public class ScenarioActivity extends AppCompatActivity {
     private final int Q5_POS=5;
 
     private Button btnValidation;
-    private ImageButton btnNext;
+    private Button btnNext;
     private int position=Q1_POS;
     private TextView scenarioCounter;
     private Question1Fragment q1 = new Question1Fragment();
