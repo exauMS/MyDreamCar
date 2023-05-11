@@ -73,21 +73,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scenario_container" />
 
-
-    <ImageButton
+    <Button
         android:id="@+id/btnNextQuestion"
-        android:layout_width="49dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="93dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="27dp"
-        android:background="#ffffff"
-        android:contentDescription="nextButton"
-        android:layout_marginBottom="9dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="8dp"
+        android:text="Next ->"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnValidationScenario"
-        app:layout_constraintTop_toBottomOf="@+id/scenario_container"
-        app:srcCompat="@drawable/right_arrow" />
+        app:layout_constraintTop_toBottomOf="@+id/scenario_container" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

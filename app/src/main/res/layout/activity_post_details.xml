@@ -24,8 +24,8 @@
             <ImageView
                 android:id="@+id/logoDetailsPage"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/logo_my_dream_car" />
+                android:layout_height="71dp"
+                android:src="@drawable/splash_logo_mydreamcar" />
         </LinearLayout>
 
         <LinearLayout
@@ -207,6 +207,7 @@
                     android:textStyle="bold" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/contactLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"

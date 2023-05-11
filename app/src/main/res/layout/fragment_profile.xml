@@ -30,7 +30,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.242" />
+        app:layout_constraintVertical_bias="0.086" />
 
     <TextView
         android:id="@+id/emailProfileText"
@@ -38,15 +38,14 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="160dp"
         android:text="email@test.com"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userNameProfileText"
-        app:layout_constraintVertical_bias="1.0"
         android:textColor="@color/white"
         android:textSize="20sp"
-        android:textStyle="italic"/>
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userNameProfileText"
+        app:layout_constraintVertical_bias="0.194" />
 
     <LinearLayout
         android:id="@+id/linearLayout"

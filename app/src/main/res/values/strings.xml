@@ -2,4 +2,6 @@
     <string name="app_name">MyDreamCar</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="goToRegisterFromLogin"><u>Don\'t have an account yet? Register here</u></string>
+    <string name="goToLoginFromRegister"><u>Already have an account? Login here</u></string>
 </resources>

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ public class PostDetailsActivity extends AppCompatActivity implements Serializab
     private Bundle bundle;
     private HashMap<String, String> postInfoMap;
     private ImageView logo;
+    private LinearLayout contactLL;
 
     private ImageButton btnOpenMap;
     private Button btnDeletePost;
@@ -62,6 +64,7 @@ public class PostDetailsActivity extends AppCompatActivity implements Serializab
         location = findViewById(R.id.locationPostDetails);
         creatorEmail = findViewById(R.id.creatorContactPostDetails);
         logo = findViewById(R.id.logoDetailsPage);
+        contactLL = findViewById(R.id.contactLinearLayout);
 
         userNameAndDate.setText("Posted by "+postInfoMap.get("creator")+" on "+postInfoMap.get("date"));
         make.setText(postInfoMap.get("make"));
@@ -72,10 +75,15 @@ public class PostDetailsActivity extends AppCompatActivity implements Serializab
         creatorEmail.setText(postInfoMap.get("creatorEmail"));
         HomeFragment.getCarImageFromStorage(postInfoMap.get("url"), carImage);
 
+        if(FirebaseAuth.getInstance().getCurrentUser()==null){
+            contactLL.setVisibility(View.GONE);
+        }
+
 
         logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
                 finish();
             }
         });

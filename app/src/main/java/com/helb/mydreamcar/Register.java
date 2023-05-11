@@ -67,6 +67,10 @@ public class Register extends AppCompatActivity {
             return;
         }
 
+        if(password.length()<6){
+            Toast.makeText(getApplicationContext(),"6 minimum characters are required for the password", Toast.LENGTH_SHORT).show();
+        }
+
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
