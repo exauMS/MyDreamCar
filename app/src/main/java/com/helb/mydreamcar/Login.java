@@ -65,6 +65,7 @@ public class Login extends AppCompatActivity {
             return;
         }
 
+
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override

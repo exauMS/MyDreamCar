@@ -86,34 +86,34 @@ public class Register extends AppCompatActivity {
                                             if(task.isSuccessful()){
 
                                                 Toast.makeText(getApplicationContext(),"User successfully registered!", Toast.LENGTH_SHORT).show();
-                                                startActivity(new Intent(Register.this,Login.class));
-                                                finish();
                                             }
                                             else{
 
                                                 Toast.makeText(getApplicationContext(),"User failed to register!", Toast.LENGTH_SHORT).show();
                                             }
+                                            mAuth.signInWithEmailAndPassword(email, password)
+                                                    .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                                                        @Override
+                                                        public void onSuccess(AuthResult authResult) {
+                                                            Toast.makeText(getApplicationContext(), "User Successfully Logged!", Toast.LENGTH_SHORT).show();
+                                                            startActivity(new Intent(Register.this,MainActivity.class));
+                                                            finish();
+
+                                                        }
+                                                    })
+                                                    .addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });
                                         }
+
                                     });
                         }
                     }
                 });
 
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                    @Override
-                    public void onSuccess(AuthResult authResult) {
-                        Toast.makeText(getApplicationContext(), "User Successfully Logged!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(Register.this,MainActivity.class));
-                        finish();
 
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
     }
 }
