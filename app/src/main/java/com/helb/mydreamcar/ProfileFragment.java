@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.helb.mydreamcar.scenario.MyScenarioPageActivity;
 
 import java.util.HashMap;
 
@@ -31,7 +32,7 @@ public class ProfileFragment extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
     private DatabaseReference databaseReference;
-    private LinearLayout myPostsLinearLayout;
+    private LinearLayout myPostsLinearLayout, myScenarioLinearLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,7 +44,8 @@ public class ProfileFragment extends Fragment {
         username = view.findViewById(R.id.userNameProfileText);
         email = view.findViewById(R.id.emailProfileText);
         mAuth = FirebaseAuth.getInstance();
-        myPostsLinearLayout = view.findViewById(R.id.myPostsLinearLayout);
+        myPostsLinearLayout = view.findViewById(R.id.myPostsLinearLayoutProfile);
+        myScenarioLinearLayout = view.findViewById(R.id.myScenarioLinearLayoutProfile);
 
         currentUser = mAuth.getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
@@ -83,6 +85,13 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(),MyPostsActivity.class));
+            }
+        });
+
+        myScenarioLinearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), MyScenarioPageActivity.class));
             }
         });
 

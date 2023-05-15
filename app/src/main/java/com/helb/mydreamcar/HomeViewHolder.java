@@ -2,6 +2,7 @@ package com.helb.mydreamcar;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class HomeViewHolder extends RecyclerView.ViewHolder{
     ImageView carImage;
     TextView carMake, carModel, carYear, carType, userName, date, location;
+    LinearLayout llPostHome;
 
     public HomeViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -21,6 +23,7 @@ public class HomeViewHolder extends RecyclerView.ViewHolder{
         userName = itemView.findViewById(R.id.usernameHome);
         date = itemView.findViewById(R.id.dateHome);
         location = itemView.findViewById(R.id.locationHome);
+        llPostHome = itemView.findViewById(R.id.linearLayoutPostHome);
 
     }
 }

@@ -22,7 +22,7 @@
         android:theme="@style/Theme.MyDreamCar"
         tools:targetApi="31">
         <activity
-            android:name=".MyScenarioPageActivity"
+            android:name=".scenario.MyScenarioPageActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

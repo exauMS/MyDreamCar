@@ -20,7 +20,7 @@ public class MyPostsViewHolder extends RecyclerView.ViewHolder {
         makeMyPosts = itemView.findViewById(R.id.makeMyPosts);
         modelMyPosts = itemView.findViewById(R.id.modelMyPosts);
         yearMyPosts = itemView.findViewById(R.id.yearMyPosts);
-        myPostsLinearLayout = itemView.findViewById(R.id.myPostsLinearLayout);
+        myPostsLinearLayout = itemView.findViewById(R.id.myPostsLinearLayoutProfile);
 
     }
 }

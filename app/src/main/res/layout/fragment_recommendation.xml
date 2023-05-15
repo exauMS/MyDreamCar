@@ -6,15 +6,34 @@
     tools:context=".RecommendationFragment">
 
     <LinearLayout
+        android:id="@+id/llRecommendations"
         android:layout_width="match_parent"
+        android:layout_marginBottom="45dp"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/logoHomePage"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logo_my_dream_car" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="104dp"
+                android:layout_height="39dp"
+                android:layout_weight="1"
+                android:text="Recommendations"
+                android:textColor="@color/green_cool"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="163dp"
+                android:layout_height="match_parent"
+
+                android:layout_weight="1"
+                android:src="@drawable/splash_logo_mydreamcar" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/recommendationTitle"
@@ -23,6 +42,7 @@
             android:text="Based on your scenario"
             android:textColor="@color/black"
             android:textSize="20dp"
+            android:layout_marginBottom="20dp"
             android:textStyle="italic" />
     </LinearLayout>
 

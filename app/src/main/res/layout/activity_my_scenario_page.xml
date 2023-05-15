@@ -1,9 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".scenario.MyScenarioPageActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="252dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="My Scenario"
+            android:textColor="@color/green_cool"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/logoMyScenarioPage"
+            android:layout_width="match_parent"
+            android:layout_height="71dp"
+            android:layout_marginRight="100dp"
+            android:layout_weight="1"
+            android:src="@drawable/splash_logo_mydreamcar" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageNoContentYetMyScenario"
+        android:layout_width="wrap_content"
+        android:layout_height="500dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/no_content_yet"
+        android:visibility="invisible"
+        tools:layout_editor_absoluteY="472dp" />
+
+    <LinearLayout
+        android:id="@+id/myScenarioLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="101dp"
+        android:layout_marginBottom="139dp"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+        <TextView
+            android:id="@+id/textYourChoices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="35dp"
+            android:text="Your Choices"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtFavoriteMakeMyScenario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
+            android:text="Favorite Make : "
+            android:textColor="@color/green_cool"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txtBigStorageMyScenario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="Big Storage : "
+            android:textColor="@color/green_cool"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txtNumbOfPassengerMyScenario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="Number Of Passenger : "
+            android:textColor="@color/green_cool"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/textUseOfCarMyScenario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="Use Of Car : "
+            android:textColor="@color/green_cool"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txtFavoriteTypeMyScenario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="Favorite Type : "
+            android:textColor="@color/green_cool"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/btnDeleteMyScenario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="110dp"
+            android:backgroundTint="#F44336"
+            android:text="Delete" />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

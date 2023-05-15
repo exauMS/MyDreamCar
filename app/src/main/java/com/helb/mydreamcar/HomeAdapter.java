@@ -45,7 +45,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> implements
         holder.date.setText(posts.get(position).getDate());
         holder.location.setText(posts.get(position).getLocation());
         HomeFragment.getCarImageFromStorage(posts.get(position).getUrl(), holder.carImage);
-        holder.carImage.setOnClickListener(new View.OnClickListener() {
+        holder.llPostHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
               HashMap<String,String> postInfoMap = new HashMap<>();

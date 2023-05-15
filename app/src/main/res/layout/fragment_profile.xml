@@ -61,7 +61,7 @@
         app:layout_constraintVertical_bias="0.77">
 
         <LinearLayout
-            android:id="@+id/scenarioLinearLayoutProfile"
+            android:id="@+id/myScenarioLinearLayoutProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
@@ -88,7 +88,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/myPostsLinearLayout"
+            android:id="@+id/myPostsLinearLayoutProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
