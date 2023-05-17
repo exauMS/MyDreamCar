@@ -51,7 +51,7 @@ public class PostDetailsActivity extends AppCompatActivity implements Serializab
 
         intent = this.getIntent();
         bundle = intent.getExtras();
-        postInfoMap = (HashMap<String, String>)bundle.getSerializable("postInfo");
+        postInfoMap = (HashMap<String, String>)bundle.getSerializable("postInfo");//get data passed through the intent
 
         btnOpenMap = findViewById(R.id.imageBtnOpenMap);
         carImage = findViewById(R.id.imageCarPostDetails);
@@ -90,6 +90,7 @@ public class PostDetailsActivity extends AppCompatActivity implements Serializab
         btnOpenMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //send data to the target activity through the intent
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("cityName", (Serializable) postInfoMap.get("location"));
                 startActivity(new Intent(getApplicationContext(),MapsPageActivity.class).putExtras(bundle));
@@ -97,12 +98,16 @@ public class PostDetailsActivity extends AppCompatActivity implements Serializab
             }
         });
 
+        //display delete button in the postDetailsPage if the post was created by the current user
         if(FirebaseAuth.getInstance().getCurrentUser()!=null && FirebaseAuth.getInstance().getCurrentUser().getEmail().equals(postInfoMap.get("creatorEmail"))){
             btnDeletePost.setVisibility(View.VISIBLE);
 
             btnDeletePost.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    //get the ref of the post and the ref of the image linked to the post, then delete both
+
                     DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
                     StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(postInfoMap.get("url"));
                     Query postQuery = ref.orderByChild("url").equalTo(postInfoMap.get("url"));

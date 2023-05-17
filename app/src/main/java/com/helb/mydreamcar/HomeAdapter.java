@@ -36,6 +36,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> implements
 
     @Override
     public void onBindViewHolder(@NonNull HomeViewHolder holder, int position) {
+
+        //bind the view with data from db(posts)
         int pos = position;
         holder.carMake.setText(posts.get(position).getMake());
         holder.carModel.setText(posts.get(position).getModel());

@@ -88,6 +88,8 @@ public class CreatePostActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
 
+
+        //get username from db
         FirebaseUser currentUser = mAuth.getCurrentUser();
         databaseReference = database.getReference("Users");
         databaseReference.orderByChild("email").equalTo(currentUser.getEmail()).addValueEventListener(new ValueEventListener() {

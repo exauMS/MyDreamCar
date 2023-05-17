@@ -33,6 +33,8 @@ public class MyPostsAdapter extends RecyclerView.Adapter<MyPostsViewHolder> impl
 
     @Override
     public void onBindViewHolder(@NonNull MyPostsViewHolder holder, int position) {
+
+        //bind the view with data from db(myPosts)
         int pos = position;
         holder.makeMyPosts.setText(myPosts.get(position).getMake());
         holder.modelMyPosts.setText(myPosts.get(position).getModel());

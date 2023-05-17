@@ -65,6 +65,7 @@ public class RecommendationFragment extends Fragment {
 
 
     private  void setResultFromScenarioDB(){
+        //check if a user has already completed his scenario and then send it to the adapter for the display
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Scenarios");
         Query query = ref.orderByChild("creatorEmail").equalTo(FirebaseAuth.getInstance().getCurrentUser().getEmail());
 

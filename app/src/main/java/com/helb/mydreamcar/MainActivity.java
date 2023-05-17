@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bottomNav = findViewById(R.id.bottom_nav_bar);
-        //bottomNav.setSelectedItemId(R.id.home);
 
 
 
@@ -49,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.recommendations:
 
                         if(FirebaseAuth.getInstance().getCurrentUser() != null) {
-                            //boolean scenarioFilled = RecommendationFragment.isScenarioFilled();
                             //check if scenario already created
                             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Scenarios");
                             ref.orderByChild("creatorEmail").equalTo(FirebaseAuth.getInstance().getCurrentUser().getEmail()).addListenerForSingleValueEvent(new ValueEventListener() {

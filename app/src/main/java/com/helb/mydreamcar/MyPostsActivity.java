@@ -44,6 +44,7 @@ public class MyPostsActivity extends AppCompatActivity {
             }
         });
 
+        //get posts of a specific user from db, based on his email
         DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference("Posts");
         Query query = dbReference.orderByChild("creatorEmail").equalTo(FirebaseAuth.getInstance().getCurrentUser().getEmail());
 

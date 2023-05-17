@@ -43,6 +43,7 @@ public class Question1Fragment extends Fragment {
 
         autoCompleteTextView = view.findViewById(R.id.makeSearchAutoCompleteTextView);
 
+        //get car makers from the api
         CarDataAPI.setRequest(url);
         //waiting for the api to set the result and then get it
         try {
@@ -61,6 +62,7 @@ public class Question1Fragment extends Fragment {
             e.printStackTrace();
         }
 
+        //fill the autoCompleteView with data from the api(makeList)
         autoCompleteTextView.setAdapter(new ArrayAdapter<>(getActivity(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,makeList));
 
 

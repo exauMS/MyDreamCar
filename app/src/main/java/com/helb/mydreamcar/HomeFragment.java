@@ -73,6 +73,7 @@ public class HomeFragment extends Fragment {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                //get posts from db and send them to the adapter and display them in the view
                 databaseReference = FirebaseDatabase.getInstance().getReference().child("Posts");
                 valueEventListener = new ValueEventListener() {
                     @Override

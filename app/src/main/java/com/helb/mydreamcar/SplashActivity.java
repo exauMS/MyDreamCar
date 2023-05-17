@@ -9,6 +9,8 @@ import android.os.Handler;
 
 public class SplashActivity extends AppCompatActivity {
 
+    //the loading activity
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -22,6 +24,6 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity( new Intent(SplashActivity.this, Welcome.class));
                 finish();
             }
-        }, 5000);
+        }, 3000);
     }
 }

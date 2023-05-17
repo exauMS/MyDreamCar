@@ -23,9 +23,8 @@ public class MapsPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps_page);
 
-        bundle = this.getIntent().getExtras();
+        bundle = this.getIntent().getExtras();//this line catch the data passed through the intent when the startActivity method was called in another activity
         city = (String)bundle.getSerializable("cityName");
-        System.out.println(city);
         mapsFragment = new MapsFragment(getLocationFromAddress(getApplicationContext(),city));
         getSupportFragmentManager().beginTransaction().replace(R.id.map_container, mapsFragment).commit();
     }

@@ -47,6 +47,7 @@ public class ProfileFragment extends Fragment {
         myPostsLinearLayout = view.findViewById(R.id.myPostsLinearLayoutProfile);
         myScenarioLinearLayout = view.findViewById(R.id.myScenarioLinearLayoutProfile);
 
+        //get the username and email from db
         currentUser = mAuth.getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
         databaseReference.orderByChild("email").equalTo(currentUser.getEmail()).addValueEventListener(new ValueEventListener() {
