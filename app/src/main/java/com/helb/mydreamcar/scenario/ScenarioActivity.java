@@ -101,6 +101,7 @@ public class ScenarioActivity extends AppCompatActivity {
         btnValidation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnValidation.setEnabled(false);
                 favoriteType=q5.getFavoriteType();
                 urlPreparation();
                 try {
@@ -147,7 +148,7 @@ public class ScenarioActivity extends AppCompatActivity {
             abstractUrl= "https://car-data.p.rapidapi.com/cars?limit=5&page=0&year=20&type=hatchback";
         }
 
-        Snackbar.make(findViewById(android.R.id.content), "Waiting for your recommendations...", Snackbar.LENGTH_LONG).show();
+        Toast.makeText(this, "Waiting for your recommendations...", Toast.LENGTH_LONG).show();
         CarDataAPI.setRequest(accurateUrl);
         //waiting for the api to set the result and then get it
         try {

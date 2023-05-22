@@ -53,21 +53,25 @@ public class MyScenarioPageActivity extends AppCompatActivity {
             }
         });
 
+        btnDeleteScenario.setEnabled(false);
+        getUserScenarioInfo();
+
         btnDeleteScenario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Scenarios");
-                databaseReference.orderByChild("creatorEmail").equalTo(currentUser.getEmail()).addValueEventListener(new ValueEventListener() {
+                databaseReference.orderByChild("creatorEmail").equalTo(currentUser.getEmail()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.exists()){
                             for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                                 postSnapshot.getRef().removeValue();
                             }
-                            Toast.makeText(MyScenarioPageActivity.this, "Scenario deleted!", Toast.LENGTH_SHORT).show();
-                            finish();
+
                         }
+                        Toast.makeText(MyScenarioPageActivity.this, "Scenario deleted!", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
 
                     @Override
@@ -76,9 +80,9 @@ public class MyScenarioPageActivity extends AppCompatActivity {
                     }
                 });
 
+
             }
         });
-        getUserScenarioInfo();
 
     }
 
@@ -114,6 +118,7 @@ public class MyScenarioPageActivity extends AppCompatActivity {
 
             }
         });
+        btnDeleteScenario.setEnabled(true);
     }
 
 }

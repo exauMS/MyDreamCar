@@ -3,6 +3,7 @@ package com.helb.mydreamcar;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -48,6 +49,12 @@ public class PostDetailsActivity extends AppCompatActivity implements Serializab
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_details);
+
+        //handle notification closing
+        NotificationManager notificationManager= (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.cancel(CreatePostActivity.getNotificationId());
+        //--------------
+
 
         intent = this.getIntent();
         bundle = intent.getExtras();

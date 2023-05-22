@@ -10,6 +10,7 @@ import androidx.core.app.NotificationManagerCompat;
 import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -40,6 +41,7 @@ import com.google.firebase.storage.UploadTask;
 import com.helb.mydreamcar.model.Post;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -48,9 +50,11 @@ import java.util.UUID;
 
 public class CreatePostActivity extends AppCompatActivity {
 
+    private static final int NOTIFICATION_ID = 001;
     private Button addImageBtn, createPostBtn;
     private ImageView previewImage;
     private int SELECT_PICTURE=200;
+    private Bitmap selectedImageBitmap;
     private Uri selectedImageUri;
     private TextInputEditText make,model,year,type,location;
     private FirebaseAuth mAuth;
@@ -152,7 +156,7 @@ public class CreatePostActivity extends AppCompatActivity {
                     if (data != null
                             && data.getData() != null) {
                         selectedImageUri = data.getData();
-                        Bitmap selectedImageBitmap = null;
+                        selectedImageBitmap = null;
                         try {
                             selectedImageBitmap
                                     = MediaStore.Images.Media.getBitmap(
@@ -229,7 +233,7 @@ public class CreatePostActivity extends AppCompatActivity {
 
                 String favoriteMake="", favoriteType="";
                 final String CHANNEL_ID = "personal notifications";
-                final int NOTIFICATION_ID = 001;
+
                 if (dataSnapshot.exists()){
                     HashMap<String, Object> dataMap = (HashMap<String, Object>) dataSnapshot.getValue();
 
@@ -243,34 +247,49 @@ public class CreatePostActivity extends AppCompatActivity {
 
                     }
 
-                    if(make.getText().toString().equals(favoriteMake) || type.getText().toString().equals(favoriteType)){
+                    if(post.getMake().equals(favoriteMake) || post.getType().equals(favoriteType)){
 
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                if(Build.VERSION.SDK_INT >=Build.VERSION_CODES.O){
-                                    System.out.println("plus de 0000");
-                                    CharSequence name = "personal notifications";
-                                    String description = "personal notifications description";
-                                    int importance = NotificationManager.IMPORTANCE_DEFAULT;
+                        if(Build.VERSION.SDK_INT >=Build.VERSION_CODES.O){
+                            CharSequence name = "personal notifications";
+                            String description = "personal notifications description";
+                            int importance = NotificationManager.IMPORTANCE_DEFAULT;
 
-                                    NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, name, importance);
-                                    notificationChannel.setDescription(description);
+                            NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, name, importance);
+                            notificationChannel.setDescription(description);
 
-                                    NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                                    notificationManager.createNotificationChannel(notificationChannel);
-                                }
-                                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
-                                        .setSmallIcon(R.drawable.splash_logo_mydreamcar)
-                                        .setContentTitle("A new car matches with your scenario!")
-                                        .setContentText("favoriteMake"+","+"favoriteType")
-                                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                            notificationManager.createNotificationChannel(notificationChannel);
+                        }
+                        HashMap<String,String> postInfoMap = new HashMap<>();
+                        postInfoMap.put("url",post.getUrl());
+                        postInfoMap.put("creator",post.getCreator());
+                        postInfoMap.put("date",post.getDate());
+                        postInfoMap.put("make",post.getMake());
+                        postInfoMap.put("model",post.getModel());
+                        postInfoMap.put("year",post.getYear());
+                        postInfoMap.put("type",post.getType());
+                        postInfoMap.put("location",post.getLocation());
+                        postInfoMap.put("creatorEmail",post.getCreatorEmail());
 
-                                NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getApplicationContext());
-                                notificationManagerCompat.notify(NOTIFICATION_ID, builder.build());
-                                System.out.println("NOTIFICAASAAASSSHHH");
-                            }
-                        });
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("postInfo", (Serializable) postInfoMap);
+                        Intent landingIntent = new Intent(getApplicationContext(),PostDetailsActivity.class).putExtras(bundle);
+                        landingIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        PendingIntent landingPendingIntent = PendingIntent.getActivity(getApplicationContext(),0,landingIntent,PendingIntent.FLAG_ONE_SHOT);
+
+
+                        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
+                                .setSmallIcon(R.drawable.splash_logo_mydreamcar)
+                                .setContentTitle("A new car matches with your scenario!")
+                                .setContentText(post.getMake()+","+post.getModel())
+                                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                .setContentIntent(landingPendingIntent)
+                                .setAutoCancel(true)
+                                .setLargeIcon(selectedImageBitmap);
+
+                        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getApplicationContext());
+                        notificationManagerCompat.notify(NOTIFICATION_ID, builder.build());
+
 
                     }
 
@@ -283,6 +302,12 @@ public class CreatePostActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
+
         });
+    }
+
+
+    public static int getNotificationId(){
+        return NOTIFICATION_ID;
     }
 }
