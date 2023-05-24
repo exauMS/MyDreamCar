@@ -67,15 +67,31 @@ public class ScenarioActivity extends AppCompatActivity {
                if(position<Q5_POS){
                    switch (position){
                        case Q1_POS:
+                           if(q1.getFavoriteMake().isEmpty()){
+                               btnNext.setError("Select a car maker");
+                               return;
+                           }
                            favoriteMake=q1.getFavoriteMake();
                            break;
                        case Q2_POS:
+                           if(q2.getBigStorageValue().isEmpty()){
+                               btnNext.setError("Select a case");
+                               return;
+                           }
                           bigStorage = q2.getBigStorageValue();
                            break;
                        case Q3_POS:
+                           if(q3.getNumberOfPassenger().isEmpty()){
+                               btnNext.setError("Select a number");
+                               return;
+                           }
                            numberOfPassenger = q3.getNumberOfPassenger();
                            break;
                        case Q4_POS:
+                           if(q4.getUseOfCar().isEmpty()){
+                               btnNext.setError("Select a case");
+                               return;
+                           }
                            useOfCar = q4.getUseOfCar();
                            break;
                    }
@@ -101,8 +117,13 @@ public class ScenarioActivity extends AppCompatActivity {
         btnValidation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(q5.getFavoriteType().isEmpty()){
+                    btnValidation.setError("Select a case");
+                    return;
+                }
                 btnValidation.setEnabled(false);
                 favoriteType=q5.getFavoriteType();
+                Toast.makeText(getApplicationContext(), "Waiting for your recommendations...", Toast.LENGTH_LONG).show();
                 urlPreparation();
                 try {
                     Thread.sleep(2000);
@@ -148,7 +169,7 @@ public class ScenarioActivity extends AppCompatActivity {
             abstractUrl= "https://car-data.p.rapidapi.com/cars?limit=5&page=0&year=20&type=hatchback";
         }
 
-        Toast.makeText(this, "Waiting for your recommendations...", Toast.LENGTH_LONG).show();
+
         CarDataAPI.setRequest(accurateUrl);
         //waiting for the api to set the result and then get it
         try {
