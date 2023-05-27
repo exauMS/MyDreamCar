@@ -180,6 +180,12 @@ public class CreatePostActivity extends AppCompatActivity {
 
     private void uploadImage(){
 
+        if(selectedImageUri==null){
+            addImageBtn.setError("");
+            addImageBtn.requestFocus();
+            Toast.makeText(getApplicationContext(),"No image selected!", Toast.LENGTH_SHORT).show();
+            return;
+        }
         final String randomKey = UUID.randomUUID().toString();//security in case of same file name
 
         StorageReference carImageRef = storageReference.child("images/"+randomKey);
@@ -202,6 +208,12 @@ public class CreatePostActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault());
         String currentDateAndTime = sdf.format(new Date());
 
+        if(make.getText().toString().isEmpty() || model.getText().toString().isEmpty() || year.getText().toString().isEmpty() || type.getText().toString().isEmpty() || location.getText().toString().isEmpty()){
+            createPostBtn.setError("");
+            createPostBtn.requestFocus();
+            Toast.makeText(getApplicationContext(),"Some fields are empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
         post.setMake(make.getText().toString());
         post.setModel(model.getText().toString());
         post.setYear(year.getText().toString());
