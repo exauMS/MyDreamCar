@@ -20,6 +20,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -53,6 +54,7 @@ public class CreatePostActivity extends AppCompatActivity {
     private static final int NOTIFICATION_ID = 001;
     private Button addImageBtn, createPostBtn;
     private ImageView previewImage;
+    private ProgressBar progressBar;
     private int SELECT_PICTURE=200;
     private Bitmap selectedImageBitmap;
     private Uri selectedImageUri;
@@ -80,6 +82,7 @@ public class CreatePostActivity extends AppCompatActivity {
         userName = "username";
         addImageBtn = findViewById(R.id.addImageBtn);
         createPostBtn = findViewById(R.id.createPostBtn);
+        progressBar = findViewById(R.id.progressBarCreatePost);
         previewImage = findViewById(R.id.previewImage);
         make = findViewById(R.id.makeCreateEditText);
         model = findViewById(R.id.modelCreateEditText);
@@ -134,6 +137,8 @@ public class CreatePostActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 uploadImage();
+                createPostBtn.setVisibility(View.GONE);
+                progressBar.setVisibility(View.VISIBLE);
             }
         });
     }

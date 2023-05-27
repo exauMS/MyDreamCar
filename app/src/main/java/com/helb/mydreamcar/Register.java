@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ public class Register extends AppCompatActivity {
     private TextInputEditText editTextUserName, editTextEmail, editTextPassword;
     private TextView goToLoginText;
     private Button btnRegister;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,7 @@ public class Register extends AppCompatActivity {
         editTextUserName = findViewById(R.id.usernameRegisterEditText);
         editTextEmail = findViewById(R.id.emailRegisterEditText);
         editTextPassword = findViewById(R.id.passwordRegisterEditText);
+        progressBar = findViewById(R.id.progressBarRegister);
         goToLoginText = findViewById(R.id.goToLoginFromRegister);
 
         goToLoginText.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +59,7 @@ public class Register extends AppCompatActivity {
     }
 
     private void registerUser(){
+        progressBar.setVisibility(View.VISIBLE);
         String username = editTextUserName.getText().toString().trim();
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();

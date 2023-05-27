@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -34,6 +35,7 @@ public class ScenarioActivity extends AppCompatActivity {
 
     private Button btnValidation;
     private Button btnNext;
+    private ProgressBar progressBar;
     private int position=Q1_POS;
     private TextView scenarioCounter;
     private Question1Fragment q1 = new Question1Fragment();
@@ -56,6 +58,7 @@ public class ScenarioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scenario);
         btnValidation = findViewById(R.id.btnValidationScenario);
         btnNext = findViewById(R.id.btnNextQuestion);
+        progressBar = findViewById(R.id.progressBarScenario);
         scenarioCounter = findViewById(R.id.scenarioCounterText);
 
 
@@ -102,6 +105,8 @@ public class ScenarioActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 btnValidation.setEnabled(false);
+                btnValidation.setVisibility(View.GONE);
+                progressBar.setVisibility(View.VISIBLE);
                 favoriteType=q5.getFavoriteType();
                 urlPreparation();
                 try {

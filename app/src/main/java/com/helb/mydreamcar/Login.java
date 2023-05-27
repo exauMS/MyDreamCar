@@ -9,6 +9,7 @@ import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ public class Login extends AppCompatActivity {
     private TextInputEditText editTextEmail, editTextPassword;
     private TextView goToRegisterText;
     private Button btnLogin;
+    private ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +38,7 @@ public class Login extends AppCompatActivity {
         editTextEmail = findViewById(R.id.emailLoginEditText);
         editTextPassword = findViewById(R.id.passwordLoginEditText);
         goToRegisterText = findViewById(R.id.goToRegisterFromLogin);
+        progressBar = findViewById(R.id.progressBarLogin);
         btnLogin = findViewById(R.id.btnLogin);
 
         goToRegisterText.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +58,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void loginUser(){
+        progressBar.setVisibility(View.VISIBLE);
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 

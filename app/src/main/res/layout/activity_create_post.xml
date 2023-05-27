@@ -193,5 +193,20 @@
         app:layout_constraintStart_toEndOf="@+id/previewImage"
         app:layout_constraintTop_toBottomOf="@+id/addImageBtn" />
 
+    <ProgressBar
+        android:id="@+id/progressBarCreatePost"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="15dp"
+        android:visibility="gone"
+        android:layout_marginBottom="17dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/previewImage"
+        app:layout_constraintTop_toBottomOf="@+id/addImageBtn" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
