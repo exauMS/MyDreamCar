@@ -3,7 +3,6 @@ Android Project developed with Android Studio with the programming language Java
 ![home](https://github.com/exauMS/MyDreamCar/assets/100723958/35628de3-ba90-4622-aab6-19af175332bf)
 ![login](https://github.com/exauMS/MyDreamCar/assets/100723958/e6d774e3-9751-4652-8d4e-4cf8890d27cf)
 ![reco](https://github.com/exauMS/MyDreamCar/assets/100723958/ba366d94-0db8-48bc-b790-18b2b1b8729f)
-![login](https://github.com/exauMS/MyDreamCar/assets/100723958/98ecce1a-fd41-4837-a31e-8fbde8c29a34)
 ![create](https://github.com/exauMS/MyDreamCar/assets/100723958/96f7ac7a-a4aa-4880-9758-c2e5f2e60932)
 ![details](https://github.com/exauMS/MyDreamCar/assets/100723958/14daf24d-9555-4760-bf65-8bf09a4b2e5a)
 ![notif](https://github.com/exauMS/MyDreamCar/assets/100723958/dd44636a-eff6-46b5-8840-6390936b3ab5)
